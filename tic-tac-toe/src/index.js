@@ -13,6 +13,7 @@ class Board extends React.Component {
     return (
       <Square
         value={this.props.squares[i]}
+        id={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
       />
     );
@@ -41,7 +42,7 @@ class Board extends React.Component {
 }
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button className="square" id={props.id} onClick={props.onClick}>
       {props.value}
     </button>
   );
@@ -96,6 +97,8 @@ class Game extends React.Component {
     let status = "";
     if (winner) {
       status = "Winner: " + winner;
+      console.log(winner);
+      //   paintSquares(winner);
     } else {
       status = "Next player: " + (this.state.xIsNext ? "X" : "O");
     }
@@ -132,3 +135,12 @@ function calculateWinner(squares) {
   }
   return null;
 }
+// function paintSquares(winner) {
+//   let winSquares = document.querySelectorAll(`#${winner}`);
+//   console.log("called", winSquares);
+//   // let winSquares = document.getElementsByClassName("square");
+//   //   for (let i = 0; i < winSquares.length; i++) {
+//   //     if (winSquares[i].innerText === "X") {
+//   //       winSquares[i].className = "square yellow";
+//   //     }
+// }
